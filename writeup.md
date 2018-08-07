@@ -103,16 +103,17 @@ a = function(a) {
 }
 ```
 
-(remark: I am not completely sure if this is the equivalent notation
+_(Remark: I am not completely sure if this is the equivalent notation
 of `b()` and `a()`, but once you get the hang of it, this not
 essential for the solution of the challenge. Any clarifications are
-welcome!)
+welcome!)_
 
 ## The functions
 
 Now that we've divided up the single parts, let's have a look to each
 of the function and find out what they are doing:
 
+### Creating random strings: `r()` 
 *Function `r(r)`* creates an strings of random bits. Don't be confused
 by the double use of the name `r`: It's both the name of the function
 as well as its only parameter inside the function. The parameter holds
@@ -149,6 +150,7 @@ r = function(len) {
 }
 ```
 
+### Applying the crypto: `x()`
 The function `x(a, b)` is the heart of the actual "encryption", taking
 two strings and creating a new one. There's actually some code to deal
 with strings of arbitrary length, but it's easier to think of each
@@ -191,16 +193,16 @@ marshalled again into an 22-element array and finally again into a
 Observe that this function `x(a, b)` has a number of properties that
 are important for the further solution:
 
-# The function is commutative, meaning that `x(a, b) == x(b, a)`.
+1. The function is commutative, meaning that `x(a, b) == x(b, a)`.
 
-# The function is a involution, meaning that if you apply the the
+2. The function is a involution, meaning that if you apply the the
   result of `x(a, b)` again to one of its arguments (regardless
   which), you can retrieve the other original value: `x(a, x(a, b)) ==
   b` and `x(x(a, b), b) == a`. Another easier example of an involution
   is ROT13: Twice applied on a cleartext results again in the
   cleartext.
 
-# The function behaves like what we call "local": If you modify just a
+3. The function behaves like what we call "local": If you modify just a
   single character at position `n` in either `a` or `b` inputs, the
   result differs only in position `n` as well. No other characters are
   modified.
@@ -232,11 +234,12 @@ depending on the global three-element array `z[]`. Later we will
 transform this function once more to reverse it, but first let's check
 the final function.
 
+### Obfuscating the invocation: `a()` and `b()`
 Function `a()` is a function that returns a function itself, in our
 case the previous function `b()`. We may need some more precise
 description on how this works.
 
-== The static values ==
+## The static values
 
 Besides the four functions there are also three (kind of) static
 values `s`, `z` and `b` defined:
@@ -319,7 +322,7 @@ In another turn, let's now assume that all bits in `r(22)` are
 set. That means that all characters are shifted by one Unicode
 value. Previously even values get incremented by one, odd ones get
 decremented by one. We call that result __ones-res__:
-`"caucihnf,htr,u``im/iull"`.
+`"caucihnf,htr,u\`im/iull"`.
 
 We further know that the passphrase contains only lowercase letters,
 digits, dots, or dashes and probably ends in `.html`. So here is a
@@ -327,8 +330,8 @@ table of potential values at all of the 22 slots:
 
 Position | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |10 |11 |12 |13 |14 |15 |16 |17 |18 |19 |20 |21
 ---------+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---
-zero-res | b | ` | t | b | h | i | o | g | - | i | u | s | - | t | a | h | l | . | h | t | m | m
-ones-res | c | a | u | c | i | h | n | f | , | h | t | r | , | u | ` | i | m | / | i | u | l | l
+zero-res | b | \` | t | b | h | i | o | g | - | i | u | s | - | t | a | h | l | . | h | t | m | m
+ones-res | c | a | u | c | i | h | n | f | , | h | t | r | , | u | \` | i | m | / | i | u | l | l
 
 We can now decide row by row which character to take. Some of them are
 not allowed (striked out), so the other option must be the valid
@@ -336,8 +339,8 @@ option (bold). We also know the ending extension ".html" already.
 
 Position | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |10 |11 |12 |13 |14 |15 |16 |17 |18 |19 |20 |21
 ---------+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---
-zero-res | b | ~~``~~ | t | b | h | i | o | g | **-** | i | u | s | **-** | t | **a** | h | l | **.** | **h** | **t** | **m** | m
-ones-res | c | **a** | u | c | i | h | n | f | ~~,~~ | h | t | r | ~~,~~ | u | ~~`~~ | i | m | ~~/~~ | i | u | l | **l**
+zero-res | b | ~~\´~~ | t | b | h | i | o | g | **-** | i | u | s | **-** | t | **a** | h | l | **.** | **h** | **t** | **m** | m
+ones-res | c | **a** | u | c | i | h | n | f | ~~,~~ | h | t | r | ~~,~~ | u | ~~\`~~ | i | m | ~~/~~ | i | u | l | **l**
 
 That eliminates 9 out of 22 bits, leaving 13 bits open. Even though
 there are thus now 2^13 = 8192 possible options left, in practise it
