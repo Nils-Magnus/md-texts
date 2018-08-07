@@ -158,8 +158,8 @@ string being exactly 22 characters long. We will see later on that
 this a reasonable assumption.
 
 Let us defuscate the function first a bit: We can safely extract most
-of the initializing values out of for-loop and move code of the
-increment part into the body of the loop (moving the `i++` part into
+of the initializing values out of the for-loop and move code of the
+increment part into the body of the loop (leaving the `i++` part in
 the increment):
 
 ```javascript
