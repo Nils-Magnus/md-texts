@@ -1,10 +1,10 @@
-=== Writeup of Challenge 8 of SecTalks 0x00BER ===
+# Writeup of Challenge 8 of SecTalks 0x00BER
 
 by Nils Magnus and Kester Habermann
 
 Credits go to Malte XXXXX, who supported us on the preceding challenges.
 
-== Outer environment ==
+## Outer environment
 
 The [starting point of the
 challenge](https://0x00.randomcompanyna.me/base-64-is-great.html) was
@@ -28,7 +28,7 @@ loading the page, asking for a string. This string is fed through a
 number of complex mechanics to the parameter `c` of the function
 `b()`. That is where the control flow actually starts.
 
-== First review of the code ==
+## First review of the code
 
 The code is obviously written in (modern) Javascript and uses some
 really nasty twists the language provides.
@@ -108,7 +108,7 @@ of `b()` and `a()`, but once you get the hang of it, this not
 essential for the solution of the challenge. Any clarifications are
 welcome!)
 
-== The functions ==
+## The functions
 
 Now that we've divided up the single parts, let's have a look to each
 of the function and find out what they are doing:
@@ -263,8 +263,8 @@ this string is (pseudo) random and changes at each invocation.
 
 The second element `z[1]` takes the function `x(a, b)` and casts it
 into a string data type, resulting in a textual representation of the
-founction source code itself. *This is one of the craziest effects of
-a programming language I have seen in a while!* Please note that its
+founction source code itself. **This is one of the craziest effects of
+a programming language I have seen in a while!** Please note that its
 mandatory to use the original definition of the function `x(a, b)` to
 solve the challenge, not the simplified version we developed above as
 the source code differs. As we need exactly a 22-char string, we
@@ -279,7 +279,7 @@ in a boolean context and compared with another string, `b` is just the
 complete source definition of the function which also appears to
 consist magically of 22 characters!
 
-== The decoding of the secret passphrase ==
+## The decoding of the secret passphrase
 
 Now with all basic dataflow, functions, and values in place, we're now
 up to reverse the mechanism to obtain the secret passphrase. Let's
@@ -313,13 +313,13 @@ z[0] = "\000".repeat(22);
 z.reduce(x, b)
 ```
 
-We call the result `"b`tbhiog-ius-tahl.htmm"` of that __zero-res__.
+We call the result `"b``tbhiog-ius-tahl.htmm"` of that __zero-res__.
 
 In another turn, let's now assume that all bits in `r(22)` are
 set. That means that all characters are shifted by one Unicode
 value. Previously even values get incremented by one, odd ones get
 decremented by one. We call that result __ones-res__:
-`"caucihnf,htr,u'im/iull"`.
+`"caucihnf,htr,u``im/iull"`.
 
 We further know that the passphrase contains only lowercase letters,
 digits, dots, or dashes and probably ends in `.html`. So here is a
@@ -336,7 +336,7 @@ option (bold). We also know the ending extension ".html" already.
 
 Position | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |10 |11 |12 |13 |14 |15 |16 |17 |18 |19 |20 |21
 ---------+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---
-zero-res | b | ~~`~~ | t | b | h | i | o | g | **-** | i | u | s | **-** | t | **a** | h | l | **.** | **h** | **t** | **m** | m
+zero-res | b | ~~``~~ | t | b | h | i | o | g | **-** | i | u | s | **-** | t | **a** | h | l | **.** | **h** | **t** | **m** | m
 ones-res | c | **a** | u | c | i | h | n | f | ~~,~~ | h | t | r | ~~,~~ | u | ~~`~~ | i | m | ~~/~~ | i | u | l | **l**
 
 That eliminates 9 out of 22 bits, leaving 13 bits open. Even though
