@@ -17,7 +17,7 @@ contains a hint to the solution, but that hint is not really useful in
 the resolving process).
 
 There are a number of definitions of data structures and functions,
-but control flow starts at the very end with `
+but control flow starts at the very end with
 
 ```javascript
 alert(a(b)(prompt()))
@@ -45,14 +45,14 @@ alert(a(b)(prompt()))
 ```
 Let's run through the code quickly line by line, just to understand what we have here:
 
-The lines 1 to 3 add new functions to the existing data types
+The first three lines add new methods to the existing data types
 `String`, `Array`, and `Number`. The new functions have all the same
 name `_()`. Except for `String` they take no arguments and just
 convert the data structure into an "natural" representation of some
-other type: An *array* of characters is transformed into a
-string. `["f", "o", "o"]._()` results in just `"foo"`. A *number* is
+other type: An `Array` of characters is transformed into a
+string. `["f", "o", "o"]._()` results in just `"foo"`. A `Number` is
 transformed into a character (actually a one character string) based
-on its Unicode value. `(65)._()` results in `"A"`. *Strings* implement
+on its Unicode value. `(65)._()` results in `"A"`. `String`s implement
 the reverse function of the latter at the provided position (started
 at 0). Thus `"dragon"._(3)` results in 103, the Unicode number for
 `g`.
@@ -114,7 +114,7 @@ Now that we've divided up the single parts, let's have a look to each
 of the function and find out what they are doing:
 
 ### Creating random strings: `r()` 
-*Function `r(r)`* creates an strings of random bits. Don't be confused
+*Function `r()`* creates an strings of random bits. Don't be confused
 by the double use of the name `r`: It's both the name of the function
 as well as its only parameter inside the function. The parameter holds
 the length of the array to be created.
@@ -135,8 +135,8 @@ and does a redundant `|0` which maps each value on itself.
 
 The random bit is then transformed into Unicode characters, collected
 in an array and finally into a string. Note that this strings is not
-really printable, since it just consists of Unicode codepoints of 0x00
-and 0x01. These strings have some importance later on.
+really printable, since it just consists of Unicode codepoints of 0x0000
+and 0x0001. These strings have some importance later on.
 
 So an alternative notation of `r()` is
 
@@ -199,7 +199,7 @@ are important for the further solution:
   result of `x(a, b)` again to one of its arguments (regardless
   which), you can retrieve the other original value: `x(a, x(a, b)) ==
   b` and `x(x(a, b), b) == a`. Another easier example of an involution
-  is ROT13: Twice applied on a cleartext results again in the
+  is ROT13: Twice applied on a cleartext it results again in the
   cleartext.
 
 3. The function behaves like what we call "local": If you modify just a
@@ -248,7 +248,7 @@ values `s`, `z` and `b` defined:
 s=[44,49,119,107,11,127,37,48,78,120,114,39,101,56,126,55,98,47,57,99,103,120].map(_=>_._())._();
 ```
 
-This just creates a 22-char strings based on the numbers, each
+This just creates a 22-char string based on the numbers, each
 converted by `map()` into chars and finally into a single string by
 the `_()` methods. `s` does not depend on any other input an is this
 static.
