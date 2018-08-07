@@ -2,7 +2,7 @@
 
 by Nils Magnus and Kester Habermann
 
-Credits go to Malte XXXXX, who supported us on the preceding challenges.
+Some credits go to Malte Wirz, who supported us on the preceding challenges.
 
 ## Outer environment
 
