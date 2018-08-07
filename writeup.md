@@ -322,14 +322,14 @@ In another turn, let's now assume that all bits in `r(22)` are
 set. That means that all characters are shifted by one Unicode
 value. Previously even values get incremented by one, odd ones get
 decremented by one. We call that result __ones-res__:
-`"caucihnf,htr,u\`im/iull"`.
+`"caucihnf,htr,u```im/iull"`.
 
 We further know that the passphrase contains only lowercase letters,
 digits, dots, or dashes and probably ends in `.html`. So here is a
 table of potential values at all of the 22 slots:
 
-Position | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |10 |11 |12 |13 |14 |15 |16 |17 |18 |19 |20 |21
----------+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---
+Position | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21
+---------|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---
 zero-res | b | \` | t | b | h | i | o | g | - | i | u | s | - | t | a | h | l | . | h | t | m | m
 ones-res | c | a | u | c | i | h | n | f | , | h | t | r | , | u | \` | i | m | / | i | u | l | l
 
@@ -337,8 +337,8 @@ We can now decide row by row which character to take. Some of them are
 not allowed (striked out), so the other option must be the valid
 option (bold). We also know the ending extension ".html" already.
 
-Position | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |10 |11 |12 |13 |14 |15 |16 |17 |18 |19 |20 |21
----------+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---
+Position | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21
+---------|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---
 zero-res | b | ~~\´~~ | t | b | h | i | o | g | **-** | i | u | s | **-** | t | **a** | h | l | **.** | **h** | **t** | **m** | m
 ones-res | c | **a** | u | c | i | h | n | f | ~~,~~ | h | t | r | ~~,~~ | u | ~~\`~~ | i | m | ~~/~~ | i | u | l | **l**
 
