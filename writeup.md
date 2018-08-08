@@ -8,9 +8,9 @@ Some credits go to Malte Wirz, who supported us on the preceding challenges.
 
 The [starting point of the
 challenge](https://0x00.randomcompanyna.me/base-64-is-great.html) was
-the result of seven previous CTF-challengens.
+the result of seven previous CTF-challenges.
 
-It consists of a single website with a single block of Javascript
+It consists of a single website with a single block of JavaScript
 inside a `<script>` container that is invoked directly when the page
 is loaded. All other elements have no meaning (well, the image
 contains a hint to the solution, but that hint is not really useful in
@@ -29,16 +29,16 @@ number of complex mechanics to the parameter `c` of the function
 `b()`. That is where the control flow actually starts.
 
 If you want to run through the single steps explained in this writeup,
-just load the website mentioned above (or a local copy), type an
+just load the website mentioned above (or a local copy), enter an
 arbitrary text in the pop-up dialog (most probably resulting in a
 `false`) and then hit Ctrl+Shift-I (on Firefox) or F12 (on Chrome).
-There you can click on `Console` and type JavaScript code. All
+Click on `Console` and you are ready to type JavaScript code. All
 mentioned data structures are initialized by then.
 
 ## First review of the code
 
-The code is obviously written in (modern) Javascript and uses some
-really nasty twists the language provides.
+The code is obviously written in (modern) JavaScript and uses some
+really nasty twists provided by the language.
 
 ```javascript
 String.prototype._=function(i){return this.charCodeAt(i)};
