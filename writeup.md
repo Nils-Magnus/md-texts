@@ -213,10 +213,10 @@ are important for the further solution:
   modified.
 
 The function `b()` defines the way the crypto function `x(a, b)` is
-called. It feeds three 22-char strings of the array `z` (we get later
-to that) and the parameter `c` to `x()` and compare the result to
-another 22-char string `b` (not to be confused with the name of the
-function, which is also `b`).
+called. It feeds by means of the method `reduce()` three 22-char
+strings of the array `z` (we get later to that) and the parameter
+`c` to `x()` and compare the result to another 22-char string `b`
+(not to be confused with the name of the function, which is also `b`).
 
 Effectively this results in this code:
 
@@ -241,8 +241,7 @@ the final function.
 
 ### Obfuscating the invocation: `a()` and `b()`
 Function `a()` is a function that returns a function itself, in our
-case the previous function `b()`. We may need some more precise
-description on how this works.
+case the previous function `b()`. 
 
 ## The static values
 
@@ -255,7 +254,7 @@ s=[44,49,119,107,11,127,37,48,78,120,114,39,101,56,126,55,98,47,57,99,103,120].m
 
 This just creates a 22-char string based on the numbers, each
 converted by `map()` into chars and finally into a single string by
-the `_()` methods. `s` does not depend on any other input an is this
+the `_()` methods. `s` does not depend on any other input and is thus
 static.
 
 The second static value consists actally of three values, packed into
